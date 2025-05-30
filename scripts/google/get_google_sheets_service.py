@@ -17,6 +17,7 @@ from googleapiclient.discovery import build
 # Local imports
 from scripts.google.create_oauth_json import create_oauth_json
 from utils.handle_exceptions import handle_exceptions
+import fickling
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
@@ -46,7 +47,7 @@ def get_google_sheets_service():
     # For local development, use token.pickle file
     elif is_local and os.path.exists("token.pickle"):
         with open("token.pickle", "rb") as token:
-            creds = pickle.load(token)
+            creds = fickling.load(token)
             print("Loaded token from token.pickle file")
 
     # If token does not exist or is invalid, get new one
